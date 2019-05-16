@@ -14,7 +14,6 @@ class User():
 				while str(self.user_num)[i] == str(self.user_num)[j]:
 					self.user_num = int(input("Número inválido: ninguna cifra debe repetirse.\nDiga un número de 4 cifras:"))
 		
-
 class Host(User):
 
 	def wellcome(self):
@@ -33,30 +32,24 @@ class Host(User):
 class Guess(Host):
 
 	def guess(self):
-		ok = 0
-		reg = 0	
+		self.ok = 0
+		self.reg = 0	
 		
 		self.user_num = list(map(int, str(self.user_num)))
 		self.num = list(map(int, str(self.num)))
 
-		if self.user_num[0] == self.num[0]: ok +=1
-		if self.user_num[1] == self.num[1]: ok +=1
-		if self.user_num[2] == self.num[2]: ok +=1
-		if self.user_num[3] == self.num[3]: ok +=1
+		for i in range(4):
+			if self.user_num[i] == self.num[i]: self.ok +=1
 
-		if self.user_num[0] != self.num[0] and self.user_num[0] == self.num[1] or self.user_num[0] == self.num[2] or self.user_num[0] == self.num[3]: reg +=1
-		if self.user_num[1] != self.num[1] and self.user_num[1] == self.num[0] or self.user_num[1] == self.num[2] or self.user_num[1] == self.num[3]: reg +=1
-		if self.user_num[2] != self.num[2] and self.user_num[2] == self.num[0] or self.user_num[2] == self.num[1] or self.user_num[2] == self.num[3]: reg +=1
-		if self.user_num[3] != self.num[3] and self.user_num[3] == self.num[0] or self.user_num[3] == self.num[1] or self.user_num[3] == self.num[2]: reg +=1
+		if self.user_num[0] != self.num[0] and self.user_num[0] == self.num[1] or self.user_num[0] == self.num[2] or self.user_num[0] == self.num[3]: self.reg +=1
+		if self.user_num[1] != self.num[1] and self.user_num[1] == self.num[0] or self.user_num[1] == self.num[2] or self.user_num[1] == self.num[3]: self.reg +=1
+		if self.user_num[2] != self.num[2] and self.user_num[2] == self.num[0] or self.user_num[2] == self.num[1] or self.user_num[2] == self.num[3]: self.reg +=1
+		if self.user_num[3] != self.num[3] and self.user_num[3] == self.num[0] or self.user_num[3] == self.num[1] or self.user_num[3] == self.num[2]: self.reg +=1
 
-
-		self.hint = "%d números OK | %d números REGULAR" % (ok,reg)
+		self.hint = "%d números OK | %d números REGULAR" % (self.ok,self.reg)
 		print(self.hint)
-		self.ok = ok
-		self.reg = reg
 
 	def win(self):
-		remain = 4 - self.ok
 		if self.ok < 4:
 			self.userNum()
 			empty_var = ""
