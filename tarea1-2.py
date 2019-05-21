@@ -7,12 +7,27 @@ class Host():
 		#self.name = "a"
 
 	def wellcome(self):
+		"""
+		Da mensaje de bienvenida y una breve descripción sobre que consiste el juego.
+		"""	
 		msg = "Bienvenid@ %s, en el siguiente juego usted debe pensar un número de 4 cifras (sin repetirse) y el ordenador adivinará cual es la cifra que eligió.\nIndicar cuantas cifras son correctas y cuantas regular(correctas pero en otra posición)." % self.name.upper()
 		print(msg)
 
 class Guess(Host):
 
 	def find_regulars(self):
+		"""
+		Define que cifras componen el número elegido por el usuario mediante un proceso lógico de descarte.
+
+		El proceso consiste en dividir las cifras del 0 al 9 en 2 grupos de 4 cifras(1234 y 7890) y otro grupo de
+		2 cifras que se forma por omisión(56), cubriendo así las 10 cifras posibles. El usuario indicará
+		cuantas cifras correctas hay en cada grupo, a partir de la información brindada se generan nuevos
+		grupos de números hasta poder identificar los correctos y descartar el resto.
+
+		Obtiene una lista de 4 integers correctos y otra de 6 descartados.
+
+		Si el usuario proporciona datos incorrectos y no se logra obtener las 4 cifras imprime un error.
+		"""
 
 		ok = []
 		no = []
@@ -457,9 +472,13 @@ class Guess(Host):
 		#print(self.ok, self.no)
 
 	def make_int(self, b):
+		"""
+		A partir de una lista de integers los concatena para formar un solo número.
+		"""
 		integer = ""
 		j = []
 		try:
+			# Transforma lista anidada a lista simple si es necesario.
 			a = len(b[0])
 			if a == 1:
 				for i in range(1,4):
@@ -468,13 +487,25 @@ class Guess(Host):
 					j.append(i)
 			b = j
 		except: pass
+
+		# Contatena lista en un solo integer.
 		self.integer = int(integer.join(map(str,b)))
 		return self.integer
 
 	def end_game(self):
+		"""
+		Devuelve el número obtenido y da un mensaje de finalización.
+		"""
 		return print("FELICITACIONES SU NÚMERO ES %d\n(En caso de no ser correcto verifique las respuestas por favor)" % self.make_int(self.hit))
 
 	def find_number(self):
+		"""
+		A partir de las cifras obtenidas con find_regulars() se pregunta al usuario que cifras están OK en
+		una serie de candidatos que permite definir cual es la posición correcta de cada una para encontrar
+		el número final. 
+
+		Solamente solicita las cifras OK ya que las regulares fueron obtenidas de la función find_regulars().
+		"""
 
 		self.hit = [[],[],[],[]]
 		self.dismiss = [[],[],[],[]]
@@ -494,7 +525,7 @@ class Guess(Host):
 		suggest14 = [self.no[2],self.ok[3],self.no[1],self.no[0]] #9
 		suggest15 = [self.ok[1],self.no[1],self.no[0],self.no[5]]
 
-		#verifico números de los extremos 0xx3.
+		#verifico números de los extremos [0]xx[3].
 		q1 = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest)))
 		# si 1: verifico cual es correcto.
 		if q1 == 1:
@@ -573,7 +604,7 @@ class Guess(Host):
 						self.hit[1].append(self.ok[1])
 						self.end_game()
 
-		# si 0: verifico números de los extremos 3xx0.
+		# si 0: verifico números de los extremos [3]xx[0].
 		elif q1 == 0:
 			q2 = int(input("Su número es el %d?\nCifras OK:   "% self.make_int(suggest5)))
 			if q2 == 1:
