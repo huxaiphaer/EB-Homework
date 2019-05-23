@@ -8,16 +8,15 @@ class User():
 	def userNum(self):
 		"""
 		Solicita al usuario el número que elige como candidato.
-		Debe ser un número de 4 cifras distintas o de lo contrario volverá a solicitarlo.
+		Debe ser un número de 4 cifras y distintas entre si o de lo contrario volverá a solicitarlo.
 		"""
-		self.user_num = int(input("diga un número de 4 cifras:"))
+		self.user_num = int(input("Indique un número de 4 cifras:"))
 		while len(str(self.user_num)) != 4:
-			self.user_num = int(input("Número inválido.\nDiga un número de 4 cifras:"))
+			self.user_num = int(input("Número inválido.\nIndique un número de 4 cifras:"))
 		for i in range(len(str(self.user_num))):
 			for j in range(i+1,len(str(self.user_num))):
 				while str(self.user_num)[i] == str(self.user_num)[j]:
-					self.user_num = int(input("Número inválido: ninguna cifra debe repetirse.\nDiga un número de 4 cifras:"))
-		
+					self.user_num = int(input("Número inválido: ninguna cifra debe repetirse.\nIndique un número de 4 cifras:"))
 class Host(User):
 
 	def wellcome(self):
@@ -77,7 +76,7 @@ class Guess(Host):
 			self.num = int(empty_var.join(map(str,self.num)))
 			self.guess()
 			self.win()
-		else: print("¡¡FELICITACIONES ADIVINÓ EL NÚMERO!!")
+		else: return print("¡¡FELICITACIONES ADIVINÓ EL NÚMERO!!")
 
 
 def main():

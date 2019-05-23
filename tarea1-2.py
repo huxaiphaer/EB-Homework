@@ -26,7 +26,7 @@ class Guess(Host):
 
 		Obtiene una lista de 4 integers correctos y otra de 6 descartados.
 
-		Si el usuario proporciona datos incorrectos y no se logra obtener las 4 cifras imprime un error.
+		Si el usuario proporciona datos incorrectos y no se logra obtener las 4 cifras imprime error.
 		"""
 
 		ok = []
@@ -465,7 +465,7 @@ class Guess(Host):
 			no.extend([1,2,3,4])
 
 		if len(ok) != 4: 
-			print("Error: Revisar respuestas por favor.")
+			print("Error: Ha ingresado un valor equivocado.")
 
 		self.ok = ok
 		self.no = no
@@ -501,10 +501,12 @@ class Guess(Host):
 	def find_number(self):
 		"""
 		A partir de las cifras obtenidas con find_regulars() se pregunta al usuario que cifras están OK en
-		una serie de candidatos que permite definir cual es la posición correcta de cada una para encontrar
+		una serie de candidatos que permite definir cual es la posición correcta de cada cifra para encontrar
 		el número final. 
 
 		Solamente solicita las cifras OK ya que las regulares fueron obtenidas de la función find_regulars().
+
+		Si el usuario proporciona datos incorrectos imprime error.
 		"""
 
 		self.hit = [[],[],[],[]]
@@ -751,6 +753,8 @@ class Guess(Host):
 						self.hit[3].append(self.ok[1])
 						self.hit[0].append(self.ok[2])
 						self.end_game()
+
+		print("Error: Ha ingresado un valor equivocado.")
 
 def main():
     comenzar = Guess()
