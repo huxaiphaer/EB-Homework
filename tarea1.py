@@ -32,7 +32,8 @@ class Host(User):
 		"""
 		random = randint(1023, 9876)
 		random = list(map(int, str(random)))
-		while random[0] == random[1] or random[0] == random[2] or random[0] == random[3] or random[1] == random[2] or random[1] == random[3] or random[2] == random[3]:
+		while random[0] == random[1] or random[0] == random[2] or random[0] == \
+				random[3] or random[1] == random[2] or random[1] == random[3] or random[2] == random[3]:
 			random = randint(1023, 9876)
 			random = list(map(int, str(random)))
 		num = ""

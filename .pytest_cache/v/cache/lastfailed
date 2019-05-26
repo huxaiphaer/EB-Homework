@@ -1,0 +1,10 @@
+{
+  "test_tarea1.py": true,
+  "test_tarea1.py::TestTarea1Guess::test_if_user_wins": true,
+  "test_tarea1.py::TestTarea1Guess::test_success_message_if_user_wins": true,
+  "test_tarea1.py::TestTarea1Host::test_number_auto_generated": true,
+  "test_tarea1.py::TestTarea1Host::test_random_generation": true,
+  "test_tarea1.py::TestTarea1Host::test_random_num_generation": true,
+  "test_tarea2.py": true,
+  "test_tarea2.py::TestTarea2::test_find_numbers": true
+}

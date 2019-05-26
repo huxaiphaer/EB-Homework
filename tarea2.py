@@ -13,6 +13,7 @@ class Host():
 		msg = "Bienvenid@ %s, en el siguiente juego usted debe pensar un número de 4 cifras (sin repetirse) y el ordenador adivinará cual es la cifra que eligió.\nIndicar cuantas cifras son correctas y cuantas regular(correctas pero en otra posición)." % self.name.upper()
 		print(msg)
 
+
 class Guess(Host):
 
 	def find_regulars(self):
